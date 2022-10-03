@@ -17,6 +17,12 @@ const request = require("request"),
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 8080, () => console.log("Webhook is listening at 8080"));
 
+app.get("/api/info", async(req, res) => {
+  let testnumber = "918866443258";
+  let userdata= await API_SERVICE.getUserDetailsFromInnexia(testnumber);
+  //console.log(userdata);
+  res.send(userdata);
+});
 // Accepts POST requests at /webhook endpoint
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
